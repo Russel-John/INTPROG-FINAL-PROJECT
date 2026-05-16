@@ -72,10 +72,3 @@ All users can see the same shared message history after logging in or restoring 
 - Do not delete `users.txt` unless you want to remove all registered accounts.
 - Do not delete `messages.txt` unless you want to clear the message history.
 
-## Clean Build Files
-
-Compiled `.class` files can be removed with:
-
-```powershell
-Remove-Item *.class
-```
