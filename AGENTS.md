@@ -43,7 +43,7 @@ Removes generated compile artifacts on Windows PowerShell.
 
 Use standard Java naming: `PascalCase` for classes, `camelCase` for variables and methods, and descriptive names for sockets, readers, and writers. Keep one public class per file and match the filename to the class name.
 
-The existing code uses three-space indentation and brace-on-new-line style. Follow the current style unless doing a deliberate formatting pass. Prefer explicit imports over broad `java.util.*` style when adding new code.
+The existing code uses three-space indentation and brace-on-new-line style. Follow the current style unless doing a deliberate formatting pass. Wildcard imports such as `java.util.*`, `java.io.*`, and `javax.swing.*` are preferred for this project when several classes from the same package are used. Use explicit imports only when needed to avoid class-name conflicts.
 
 ## Testing Guidelines
 

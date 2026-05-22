@@ -1,10 +1,6 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.*;
 
 public class ClientHandler implements Runnable
 {

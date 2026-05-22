@@ -1,5 +1,4 @@
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 
 public class Server
 {

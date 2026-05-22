@@ -1,28 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.*;
+import javax.swing.*;
 
 public class Client extends JFrame
 {
@@ -63,9 +44,9 @@ public class Client extends JFrame
       cards.add(createChatPanel(), "chat");
       add(cards);
 
-      addWindowListener(new java.awt.event.WindowAdapter()
+      addWindowListener(new WindowAdapter()
       {
-         public void windowClosing(java.awt.event.WindowEvent event)
+         public void windowClosing(WindowEvent event)
          {
             closeConnection();
          }
@@ -114,7 +95,7 @@ public class Client extends JFrame
    private JPanel createChatPanel()
    {
       JPanel panel = new JPanel(new BorderLayout(8, 8));
-      panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
       panel.add(new JScrollPane(messageList), BorderLayout.CENTER);
 
       JButton sendButton = new JButton("Send");

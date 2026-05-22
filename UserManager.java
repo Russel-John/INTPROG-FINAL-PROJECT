@@ -1,9 +1,7 @@
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.security.MessageDigest;
+import java.io.*;
+import java.nio.charset.*;
+import java.nio.file.*;
+import java.security.*;
 
 public class UserManager
 {

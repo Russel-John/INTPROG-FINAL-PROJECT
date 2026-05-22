@@ -1,5 +1,5 @@
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.nio.charset.*;
+import java.util.*;
 
 public class ProtocolUtil
 {
