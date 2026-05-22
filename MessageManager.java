@@ -10,12 +10,14 @@ public class MessageManager
 
    public MessageManager(String fileName)
    {
+      // Initialize message manager with the backing file and load state
       messagesFile = Path.of(fileName);
       initialize();
    }
 
    public synchronized MessageRecord saveMessage(String username, String message) throws IOException
    {
+      // Append a new message record to the messages file and return it
       MessageRecord record = new MessageRecord(nextMessageId++, username, System.currentTimeMillis(), message);
       Files.writeString(messagesFile, record.toFileLine() + System.lineSeparator(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
       return record;
@@ -23,6 +25,7 @@ public class MessageManager
 
    public synchronized MessageRecord resendMessage(String username, int messageId) throws IOException
    {
+      // Find an existing message by id and re-save it under the requesting user
       for(MessageRecord record : getAllMessages())
       {
          if(record.getId() == messageId)
@@ -36,6 +39,7 @@ public class MessageManager
 
    public synchronized List<MessageRecord> getAllMessages() throws IOException
    {
+      // Read and parse all message lines from the messages file
       List<MessageRecord> records = new ArrayList<MessageRecord>();
 
       for(String line : Files.readAllLines(messagesFile, StandardCharsets.UTF_8))
@@ -52,6 +56,7 @@ public class MessageManager
 
    private void initialize()
    {
+      // Ensure the messages file exists and set nextMessageId based on contents
       try
       {
          if(!Files.exists(messagesFile))

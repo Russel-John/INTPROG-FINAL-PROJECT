@@ -7,6 +7,7 @@ public class MessageRecord
 
    public MessageRecord(int id, String username, long timestamp, String message)
    {
+      // Construct a message record used for storage and protocol formatting
       this.id = id;
       this.username = username;
       this.timestamp = timestamp;
@@ -15,31 +16,37 @@ public class MessageRecord
 
    public int getId()
    {
+      // Return the message id
       return id;
    }
 
    public String getUsername()
    {
+      // Return the username who sent the message
       return username;
    }
 
    public long getTimestamp()
    {
+      // Return the epoch milli timestamp for the message
       return timestamp;
    }
 
    public String getMessage()
    {
+      // Return the raw message text
       return message;
    }
 
    public String toFileLine()
    {
+      // Serialize the record to a tab-separated line for messages.txt
       return id + "\t" + username + "\t" + timestamp + "\t" + ProtocolUtil.encode(message);
    }
 
    public static MessageRecord fromFileLine(String line)
    {
+      // Parse a tab-separated file line into a MessageRecord or return null
       try
       {
          String[] parts = line.split("\t", 4);

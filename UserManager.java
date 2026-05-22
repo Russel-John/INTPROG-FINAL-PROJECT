@@ -9,12 +9,14 @@ public class UserManager
 
    public UserManager(String fileName)
    {
+      // Initialize user manager with the backing users file
       usersFile = Path.of(fileName);
       createFileIfMissing();
    }
 
    public synchronized boolean register(String username, String password) throws Exception
    {
+      // Register a new user if username valid, password long enough, and username unique
       if(!isValidUsername(username) || password.length() < 4 || userExists(username))
       {
          return false;
@@ -27,6 +29,7 @@ public class UserManager
 
    public synchronized boolean login(String username, String password) throws Exception
    {
+      // Verify username/password by comparing stored SHA-256 hash
       String expectedHash = hashPassword(password);
 
       for(String line : Files.readAllLines(usersFile, StandardCharsets.UTF_8))
@@ -43,6 +46,7 @@ public class UserManager
 
    private void createFileIfMissing()
    {
+      // Ensure the users file exists on disk
       try
       {
          if(!Files.exists(usersFile))
@@ -58,6 +62,7 @@ public class UserManager
 
    private boolean userExists(String username) throws IOException
    {
+      // Check whether a username is already present in users file
       for(String line : Files.readAllLines(usersFile, StandardCharsets.UTF_8))
       {
          String[] parts = line.split("\t", 2);
@@ -72,11 +77,13 @@ public class UserManager
 
    private boolean isValidUsername(String username)
    {
+      // Validate username against allowed characters and length
       return username != null && username.matches("[A-Za-z0-9_]{3,20}");
    }
 
    private String hashPassword(String password) throws Exception
    {
+      // Compute SHA-256 hex digest of a password
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
       StringBuilder builder = new StringBuilder();
